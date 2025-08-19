@@ -81,7 +81,7 @@ export default function Navbar() {
           aria-label="Open menu"
           onClick={() => setSidebarOpen(true)}
         >
-          <svg width="32" height="32" stroke="black" strokeWidth="2" viewBox="0 0 24 24" fill="none">
+          <svg width="32" height="32" stroke="white" strokeWidth="2" viewBox="0 0 24 24" fill="none">
             <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
         </button>
