@@ -163,7 +163,7 @@ Through our various departments, we provide essential services including busines
         title="About The Commissioner"
        bio="Hon. Barr. Rex Anunobi, fondly called Sokom, is the Commissioner for Trade, Commerce, and Investment in Imo State. A seasoned lawyer and astute politician, he has played a key role in driving policies that strengthen commerce and attract investment to the state. His leadership has focused on creating enabling environments for businesses to thrive, especially supporting small and medium enterprises."
 
-      details="Known for his pragmatic approach, Anunobi has earned respect for balancing legal expertise with developmental strategies. He is also admired for his grassroots connection and ability to mobilize people towards shared economic goals. Through his service, he continues to contribute significantly to Imo State’s economic growth and stability."
+      details="Known for his pragmatic approach, Barr. Anunobi has earned respect for balancing legal expertise with developmental strategies. He is also admired for his grassroots connection and ability to mobilize people towards shared economic goals. Through his service, he continues to contribute significantly to Imo State’s economic growth and stability."
       />
       <div className="bg-white">
 
