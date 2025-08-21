@@ -59,7 +59,7 @@ export default function HeroSection({
           {description}
         </p>
         <Link
-          href="#"
+          href="/about"
           className="mt-8 inline-block lg:hidden bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md font-medium transition"
         >
           {buttonText}
