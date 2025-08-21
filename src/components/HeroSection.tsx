@@ -29,7 +29,7 @@ export default function HeroSection({
     return () => clearInterval(interval); // Cleanup
   }, [backgroundImages.length]);
   return (
-    <section className="relative max-h-max">
+    <section className="relative max-h-max py-10 md:py-20">
     {/* Background Image */}
     <div className="absolute inset-0 -z-10">
       {backgroundImages.map((img, index) => (
