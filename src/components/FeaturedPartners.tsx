@@ -18,7 +18,7 @@ export default function FeaturedPartners() {
         <div className="inline-block animate-scroll">
           {partners.concat(partners).map((partner, idx) => (
             <div key={idx} className="inline-block mx-8">
-              <div className="bg-white rounded-lg shadow p-4 flex items-center justify-center w-[150px] h-[80px]">
+              <div className="bg-white rounded-lg shadow p-4 flex items-center justify-center w-[150px] h-[130px]">
                 <Image
                   src={partner.src}
                   alt={partner.alt}
