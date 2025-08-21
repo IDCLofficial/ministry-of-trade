@@ -8,8 +8,8 @@ import GlobalLoader from '@/components/GlobalLoader'
 
 
 export const metadata: Metadata = {
-  title: "Ministry of Livestock Development",
-  description: "The Ministry of Livestock Development in Imo State is responsible for overseeing livestock production, animal health, and agricultural development programs to ensure food security and economic growth.",
+  title: "Ministry of Trade, Commerce, and Investment",
+  description: "The Ministry of Trade, Commerce, and Investment in Imo State is responsible for overseeing trade policies, market development, and investment promotion to ensure economic growth and development.",
 };
 
 export default function RootLayout({
