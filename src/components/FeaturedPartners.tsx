@@ -7,6 +7,9 @@ const partners = [
   { src: "/images/ocda.png", alt: "ocda" },
   { src: "/images/isipa.png", alt: "isipa" },
   { src: "/images/ocda.png", alt: "ocda" },
+  { src: "/images/NACCIMA.jpeg", alt: "NACCIMA" },
+  { src: "/images/isipa.png", alt: "isipa" },
+  { src: "/images/ocda.png", alt: "ocda" },
 ];
 
 export default function FeaturedPartners() {
