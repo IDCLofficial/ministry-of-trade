@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import NewsSidebar from "./NewsSidebar";
 import NewsSearchBar from "./NewsSearchBar";
@@ -14,14 +14,18 @@ export default function NewsPage() {
   const [newsList, setNewsList] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // ✅ new state for search
+  const [searchResults, setSearchResults] = useState<NewsItem[] | null>(null);
+
   useEffect(() => {
     const fetchNews = async () => {
       try {
         setLoading(true);
         const news = await getNewsList(process.env.NEXT_PUBLIC_MINISTRY_ID);
         setNewsList(news);
+        setSearchResults(news); // show all initially
       } catch (error) {
-        console.error('Error loading news in component:', error);
+        console.error("Error loading news in component:", error);
       } finally {
         setLoading(false);
       }
@@ -30,61 +34,87 @@ export default function NewsPage() {
     fetchNews();
   }, []);
 
-  const filteredNews = selectedCategory
-    ? newsList.filter((item) => item.category === selectedCategory)
-    : newsList;
+  // ✅ derive final list to display
+  const finalNews = (() => {
+    let list = searchResults ?? newsList;
+    if (selectedCategory) {
+      list = list.filter((item) => item.category === selectedCategory);
+    }
+    return list;
+  })();
 
   if (loading) {
     return (
       <div className="bg-white">
-         <TopHero
-                 title="Stay Up to Date"
-                 subtitle=""
-                 bgImage="/images/gradient2.png"
-            />
+        <TopHero
+          title="Stay Up to Date"
+          subtitle=""
+          bgImage="/images/gradient2.png"
+        />
         <div className="max-w-7xl mx-auto px-4 py-16 text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading news...</p>
         </div>
-       
       </div>
     );
   }
 
-  if (filteredNews.length === 0) {
+  if (finalNews.length === 0) {
     return (
       <div className="bg-white">
         <TopHero
-                 title="Stay Up to Date"
-                 subtitle=""
-                 bgImage="/images/gradient2.png"
-            />
-        <div className="max-w-7xl mx-auto px-4 py-16 text-center">
+          title="Stay Up to Date"
+          subtitle=""
+          bgImage="/images/gradient2.png"
+        />
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 px-4 py-16">
+          <NewsSidebar
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            newsList={newsList}
+          />
+       
+        <div className="max-w-full mx-auto px-4 py-16 text-center">
           <div className="text-gray-500 text-5xl mb-4">📰</div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">No News Available</h2>
-          <p className="text-gray-600">There are currently no news articles to display. Please check back later.</p>
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">No News Found</h2>
+          <p className="text-gray-600">
+            We couldn’t find any news for your search.
+          </p>
+          <button
+            onClick={() => {
+              setSearchResults(newsList);
+              setSelectedCategory(null);
+            }}
+            className="mt-4 px-5 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+          >
+            See all news
+          </button>
         </div>
-        <PartnerSection/>
-                    
-      <Footer />
+        </div>
+        <PartnerSection />
+        <Footer />
       </div>
     );
   }
 
   return (
     <div className="bg-white">
-           <TopHero
-                 title="Stay Up to Date"
-                 subtitle=""
-                 bgImage="/images/gradient2.png"
-            />
-      <NewsSearchBar newsList={newsList} />
+      <TopHero
+        title="Stay Up to Date"
+        subtitle=""
+        bgImage="/images/gradient2.png"
+      />
+
+      {/* ✅ pass callback to update results */}
+      <NewsSearchBar newsList={newsList} onSearchResults={setSearchResults} />
+
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 px-4 pb-16">
         <NewsSidebar
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
           newsList={newsList}
         />
+
         <div className="flex-1">
           {selectedCategory && (
             <div className="mb-6">
@@ -92,21 +122,31 @@ export default function NewsPage() {
                 onClick={() => setSelectedCategory(null)}
                 className="inline-flex cursor-pointer items-center gap-2 text-green-700 hover:text-green-800 font-medium transition-colors"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                  />
                 </svg>
                 Go back to all news
               </button>
               <div className="mt-2 text-sm text-gray-600">
-                Showing {filteredNews.length} news in &ldquo;{selectedCategory}&rdquo;
+                Showing {finalNews.length} news in &ldquo;{selectedCategory}&rdquo;
               </div>
             </div>
           )}
-          <NewsGrid news={filteredNews} />
+          <NewsGrid news={finalNews} />
         </div>
       </div>
-       <PartnerSection/>
-                    
+
+      <PartnerSection />
       <Footer />
     </div>
   );

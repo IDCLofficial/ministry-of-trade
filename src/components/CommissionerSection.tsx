@@ -48,9 +48,9 @@ export default function CommissionerSection({
             {details}
           </p>
           </AnimatedSection>
-          <Link href="/services" className="px-7 py-3 bg-[#D61F00] text-white rounded text-sm font-semibold shadow hover:bg-[#D61F00]/70 transition">
+          <Link href="/about" className="px-7 py-3 bg-[#D61F00] text-white rounded text-sm font-semibold shadow hover:bg-[#D61F00]/70 transition">
             <button>
-              What we Do
+              About Us
             </button>
           </Link>
         </div>

@@ -1,6 +1,8 @@
+'use client';
+
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NewsItem } from "./newsData";
 
 interface NewsGridProps {
@@ -17,32 +19,35 @@ function slugify(text: string) {
 
 export default function NewsGrid({ news, itemsPerPage = 9 }: NewsGridProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  
-  // Calculate pagination
+
+  // ✅ reset to page 1 when search/category changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [news]);
+
+  // Pagination calculation
   const totalPages = Math.ceil(news.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentNews = news.slice(startIndex, endIndex);
-  
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    // Scroll to top of grid when page changes
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  
+
   const renderPaginationButtons = () => {
     const buttons = [];
     const maxVisibleButtons = 5;
-    
+
     let startPage = Math.max(1, currentPage - Math.floor(maxVisibleButtons / 2));
     const endPage = Math.min(totalPages, startPage + maxVisibleButtons - 1);
-    
-    // Adjust start page if we're near the end
+
     if (endPage - startPage < maxVisibleButtons - 1) {
       startPage = Math.max(1, endPage - maxVisibleButtons + 1);
     }
-    
-    // Previous button
+
+    // Previous
     if (currentPage > 1) {
       buttons.push(
         <button
@@ -54,8 +59,8 @@ export default function NewsGrid({ news, itemsPerPage = 9 }: NewsGridProps) {
         </button>
       );
     }
-    
-    // First page and ellipsis
+
+    // First + ellipsis
     if (startPage > 1) {
       buttons.push(
         <button
@@ -67,13 +72,11 @@ export default function NewsGrid({ news, itemsPerPage = 9 }: NewsGridProps) {
         </button>
       );
       if (startPage > 2) {
-        buttons.push(
-          <span key="ellipsis1" className="px-2 py-2 text-gray-500">...</span>
-        );
+        buttons.push(<span key="ellipsis1" className="px-2 py-2 text-gray-500">...</span>);
       }
     }
-    
-    // Page number buttons
+
+    // Pages
     for (let i = startPage; i <= endPage; i++) {
       buttons.push(
         <button
@@ -81,21 +84,19 @@ export default function NewsGrid({ news, itemsPerPage = 9 }: NewsGridProps) {
           onClick={() => handlePageChange(i)}
           className={`px-3 py-2 text-sm border rounded-md transition-colors ${
             currentPage === i
-              ? 'bg-green-600 text-white border-green-600'
-              : 'border-gray-300 hover:bg-gray-50'
+              ? "bg-green-600 text-white border-green-600"
+              : "border-gray-300 hover:bg-gray-50"
           }`}
         >
           {i}
         </button>
       );
     }
-    
-    // Last page and ellipsis
+
+    // Last + ellipsis
     if (endPage < totalPages) {
       if (endPage < totalPages - 1) {
-        buttons.push(
-          <span key="ellipsis2" className="px-2 py-2 text-gray-500">...</span>
-        );
+        buttons.push(<span key="ellipsis2" className="px-2 py-2 text-gray-500">...</span>);
       }
       buttons.push(
         <button
@@ -107,8 +108,8 @@ export default function NewsGrid({ news, itemsPerPage = 9 }: NewsGridProps) {
         </button>
       );
     }
-    
-    // Next button
+
+    // Next
     if (currentPage < totalPages) {
       buttons.push(
         <button
@@ -120,13 +121,13 @@ export default function NewsGrid({ news, itemsPerPage = 9 }: NewsGridProps) {
         </button>
       );
     }
-    
+
     return buttons;
   };
-  
+
   return (
     <div className="w-full">
-      {/* News Grid */}
+      {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
         {currentNews.map((item, idx) => (
           <Link
@@ -136,23 +137,27 @@ export default function NewsGrid({ news, itemsPerPage = 9 }: NewsGridProps) {
           >
             <div className="relative w-full h-48">
               <Image src={item.image} alt={item.title} fill className="object-cover" />
-              <span className="absolute top-3 left-3 bg-green-600 text-white text-xs px-3 py-1 rounded font-semibold">{item.category}</span>
+              <span className="absolute top-3 left-3 bg-green-600 text-white text-xs px-3 py-1 rounded font-semibold">
+                {item.category}
+              </span>
             </div>
             <div className="p-5 flex-1 flex flex-col">
-              <h3 className="text-lg font-bold text-gray-900 mb-2 leading-snug">{item.title}</h3>
-              <p className="text-gray-700 text-sm mb-4 line-clamp-2">{item.description}</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2 leading-snug">
+                {item.title}
+              </h3>
+              <p className="text-gray-700 text-sm mb-4 line-clamp-2">
+                {item.description}
+              </p>
               <span className="text-gray-500 text-xs mt-auto">{item.date}</span>
             </div>
           </Link>
         ))}
       </div>
-      
-      {/* Pagination Controls */}
-      {totalPages >= 1 && (
+
+      {/* Pagination */}
+      {totalPages > 1 && (
         <div className="flex flex-col items-center space-y-4">
-          <div className="flex items-center space-x-2">
-            {renderPaginationButtons()}
-          </div>
+          <div className="flex items-center space-x-2">{renderPaginationButtons()}</div>
           <div className="text-sm text-gray-600">
             Showing {startIndex + 1}-{Math.min(endIndex, news.length)} of {news.length} news articles
           </div>

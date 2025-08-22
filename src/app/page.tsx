@@ -83,46 +83,58 @@ export default function Home() {
         {/* Wrapper */}
         <div className="flex flex-col lg:flex-row gap-6">
           {cardsData.map((item, i) => (
-            <div
-              key={i}
-              className="relative bg-white rounded-xl p-6 shadow-md 
-                         transition-all duration-500 ease-in-out
-                         scale-100 lg:scale-75 
-                         hover:lg:flex-[2] hover:lg:scale-100
-                         hover:-translate-y-2 hover:shadow-2xl flex-1"
-            >
-              {/* Irregular purple border effect */}
-              <div
-                className="absolute inset-0 rounded-xl border-4 border-[#06163A] 
-                           [clip-path:polygon(6%_0,94%_0,100%_10%,100%_94%,94%_100%,6%_100%,0_90%,0_6%)] 
-                           pointer-events-none"
-              ></div>
-<AnimatedSection>
-              {/* Icon */}
-              <div className="flex items-center justify-center w-10 h-10 rounded-full border border-[#06163A] mb-3 bg-gray-100">
-                <item.icon className="text-black text-base" />
-              </div>
-              </AnimatedSection>
-              <AnimatedSection >
-
-              {/* Title */}
-              <h3 className="text-lg md:text-xl font-bold mb-2 text-graay-900">
-                {item.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-gray-600 mb-4 text-sm md:text-base">
-                {item.description}
-              </p>
-              </AnimatedSection>
-              {/* Link */}
-              <Link
-                href={item.link}
-                className="text-purple-600 font-semibold hover:underline"
-              >
-                More info
-              </Link>
-            </div>
+               <div
+               key={i}
+               className="relative bg-white rounded-xl p-6 shadow-md 
+                          transform transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
+                          scale-100 lg:scale-75 flex-1
+                          hover:lg:flex-[2] hover:lg:scale-100
+                          hover:-translate-y-3 hover:shadow-2xl hover:rotate-[0.5deg]"
+             >
+               {/* Irregular purple border effect */}
+               <div
+                 className="absolute inset-0 rounded-xl border-4 border-[#06163A] 
+                            [clip-path:polygon(6%_0,94%_0,100%_10%,100%_94%,94%_100%,6%_100%,0_90%,0_6%)] 
+                            pointer-events-none transition-all duration-700 ease-in-out
+                            group-hover:border-purple-600"
+               ></div>
+             
+               <AnimatedSection>
+                 {/* Icon */}
+                 <div className="flex items-center justify-center w-10 h-10 rounded-full 
+                                 border border-[#06163A] mb-3 bg-gray-100 
+                                 transition-all duration-500 ease-in-out 
+                                 group-hover:scale-110 group-hover:bg-purple-50">
+                   <item.icon className="text-black text-base group-hover:text-purple-600 transition-colors duration-500" />
+                 </div>
+               </AnimatedSection>
+             
+               <AnimatedSection>
+                 {/* Title */}
+                 <h3 className="text-lg md:text-xl w-[93%] font-bold mb-2 text-gray-900 
+                                transition-colors duration-500 group-hover:text-purple-700">
+                   {item.title}
+                 </h3>
+             
+                 {/* Description */}
+                 <p className="text-gray-600 mb-4 w-[93%] text-sm md:text-base 
+                               transition-colors duration-500 group-hover:text-gray-800">
+                   {item.description}
+                 </p>
+               </AnimatedSection>
+             
+               {/* Link */}
+               <Link
+                 href={item.link}
+                 className="text-purple-600 font-semibold relative 
+                            after:content-[''] after:absolute after:left-0 after:bottom-0 
+                            after:w-0 after:h-[2px] after:bg-purple-600 
+                            after:transition-all after:duration-500 
+                            hover:after:w-full"
+               >
+                 More info
+               </Link>
+             </div>
           ))}
         </div>
       </section>
