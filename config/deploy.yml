@@ -1,8 +1,8 @@
 # Name of your application. Used to uniquely configure containers.
-service: ministry_of_justice_and_attorney_general
+service: ministry_of_trade
 
 # Name of the container image.
-image: idclofficial/ministry_of_justice_and_attorney_general
+image: idclofficial/ministry_of_trade
 
 # Deploy to these servers.
 servers:
@@ -11,7 +11,7 @@ servers:
 
 proxy:
   ssl: true
-  host: justice.im.gov.ng
+  host: commerce.im.gov.ng
   app_port: 3000
   healthcheck:
     path: /

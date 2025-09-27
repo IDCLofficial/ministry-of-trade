@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: justice-and-attorney-general
+  group: ministry-of-trade
 
 env:
   HUSKY: 0
