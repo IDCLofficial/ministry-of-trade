@@ -2,6 +2,14 @@ import EventsListSection from "./EventsListSection";
 import Footer from "@/components/Footer";
 import PartnerSection from "@/components/PartnerSection";
 import { TopHero } from "@/components/TopHero";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Events",
+  description: "Events organised by the Ministry of Trade, Commerce & Investment, Imo State Government.",
+  path: "/events",
+});
+
 
 export default function EventsPage() {
   return (

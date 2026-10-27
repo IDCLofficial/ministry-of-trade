@@ -5,6 +5,14 @@ import ContactImageSection from "./ContactImageSection";
 import Footer from "@/components/Footer";
 import { TopHero } from "@/components/TopHero";
 import PartnerSection from "@/components/PartnerSection";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Contact Us",
+  description: "Contact the Ministry of Trade, Commerce & Investment, Imo State Government: office location and ways to reach the ministry.",
+  path: "/contact-us",
+});
+
 
 export default function ContactUsPage() {
   return (

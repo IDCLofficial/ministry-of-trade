@@ -7,6 +7,14 @@ import MissionVisionCard from "@/app/about/MissionVisionCard";
 import TeamPage from "./Team";
 import Stats from "@/components/Stats";
 import PartnerSection from "@/components/PartnerSection";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "About Us",
+  description: "About the Ministry of Trade, Commerce & Investment of the Imo State Government: who we are and what we do.",
+  path: "/about",
+});
+
 
 
 export default function AboutUs() {
