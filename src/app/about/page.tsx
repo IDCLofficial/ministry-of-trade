@@ -11,7 +11,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "About Us",
-  description: "About the Ministry of Trade, Commerce & Investment of the Imo State Government: who we are and what we do.",
+  description: "Mission, vision and departments of the Imo State Ministry of Trade, Commerce and Investment: trade facilitation, investment attraction and MSME development.",
   path: "/about",
 });
 

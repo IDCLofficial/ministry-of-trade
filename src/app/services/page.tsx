@@ -5,8 +5,8 @@ import PartnerSection from "../../components/PartnerSection";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Services",
-  description: "Services offered by the Ministry of Trade, Commerce & Investment of the Imo State Government.",
+  title: "Business Registration and Investment Services",
+  description: "Trade facilitation, investment promotion, MSME support, export promotion, business registration and licensing and e-commerce in Imo State.",
   path: "/services",
 });
 

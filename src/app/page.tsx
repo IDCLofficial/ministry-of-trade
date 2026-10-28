@@ -12,8 +12,8 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: { absolute: "Ministry of Trade, Commerce & Investment | Imo State Government" },
-  description: "Official website of the Ministry of Trade, Commerce & Investment, Imo State Government: services, departments, projects, news and events.",
+  title: { absolute: "Imo State Ministry of Trade, Commerce and Investment" },
+  description: "Business registration, investment opportunities, MSME support and trade promotion in Imo State from the Ministry of Trade, Commerce and Investment.",
   path: "/",
 });
 

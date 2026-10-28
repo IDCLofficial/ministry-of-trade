@@ -2,7 +2,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "News",
-  description: "Latest news, announcements and updates from the Ministry of Trade, Commerce & Investment, Imo State.",
+  description: "Latest news, announcements and updates from the Ministry of Trade, Commerce and Investment, Imo State.",
   path: "/news",
 });
 
